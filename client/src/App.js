@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Signup from './pages/Signup';
@@ -8,12 +7,14 @@ import { AuthProvider } from './context/AuthContext';
 
 const App = () => {
     return (
-        <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-        </Routes>
+        <AuthProvider>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/profile" element={<Profile />} />
+            </Routes>
+        </AuthProvider>
     );
 };
 

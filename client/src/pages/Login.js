@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from '../utils/axios';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom'; // Correct import for react-router-dom v6
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [message, setMessage] = useState('');
-    const { login } = useAuth(); // Use useAuth() hook
-    const navigate = useNavigate(); // Use useNavigate()
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,7 +18,7 @@ const Login = () => {
         try {
             const { data } = await axios.post('/auth/login', formData);
             login(data.token);
-            navigate('/profile'); // Use navigate instead of history.push
+            navigate('/profile');
         } catch (err) {
             setMessage(err.response.data.message);
         }

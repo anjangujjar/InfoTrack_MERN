@@ -12,10 +12,20 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post('/auth/signup', formData);
-            setMessage('Signup successful! Please log in.');
+            const response = await axios.post('/auth/signup', formData);
+            console.log('Response:', response);
+            if (response && response.data) {
+                setMessage('Signup successful! Please log in.');
+            } else {
+                setMessage('Signup failed. Please try again.');
+            }
         } catch (err) {
-            setMessage(err.response.data.message);
+            console.error('Error:', err);
+            if (err.response && err.response.data) {
+                setMessage(err.response.data.message);
+            } else {
+                setMessage('Signup failed. Please try again.');
+            }
         }
     };
 

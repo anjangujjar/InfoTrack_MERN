@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from '../utils/axios';
-import { useAuth  } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 const Profile = () => {
     const [profile, setProfile] = useState({});
-    const { user, logout } = useContext(useAuth );
+    const { user, logout } = useAuth();
 
     useEffect(() => {
         const fetchProfile = async () => {
